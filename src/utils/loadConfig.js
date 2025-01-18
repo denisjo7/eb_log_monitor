@@ -1,8 +1,6 @@
 const fs = require("fs");
 
-function loadConfig() {
-  const configPath = "./config.json";
-
+function loadConfig(configPath) {
   return new Promise((resolve, reject) => {
     fs.readFile(configPath, "utf8", (err, data) => {
       if (err) {

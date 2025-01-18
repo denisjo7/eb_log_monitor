@@ -25,7 +25,22 @@ Auto or manual? `
   } while (autoOrManual !== "1" && autoOrManual !== "2");
 
   if (autoOrManual === "1") {
-    const config = await loadConfig();
+    let configFilePath = "";
+
+    do {
+      configFilePath = await askQuestion("Config file path: ");
+      configFilePath = configFilePath.trim();
+    } while (configFilePath === "");
+
+    let config = {};
+
+    try {
+      config = await loadConfig(configFilePath);
+    } catch (error) {
+      console.error(error);
+      return;
+    }
+
     webhookUrl = config.webhookUrl;
     config.paths.forEach((path) => logFilePaths.push(path));
     config.names.forEach((name) => logIdentifiers.push(name));
