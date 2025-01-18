@@ -1,3 +1,5 @@
+process.removeAllListeners("warning");
+
 const fs = require("fs");
 const askQuestion = require("./src/utils/askQuestion");
 const monitorFile = require("./src/utils/monitorFile");
