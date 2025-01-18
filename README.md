@@ -10,7 +10,7 @@ Simply download the latest version from the releases page and run it. This way, 
 
 #### Running the Code Instead of the Executable
 
-If you prefer to download and run the code instead of the `.exe` file, follow the instructions below:
+If you prefer to download and run the code instead of the `.exe` file, follow the instructions below
 
 ## Requirements
 
