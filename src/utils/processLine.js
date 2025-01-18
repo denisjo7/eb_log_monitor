@@ -39,10 +39,12 @@ async function processLine(
         coords.lastCoord = currCoord;
         console.log(`[${vmIdentifier}] ${line}\n`);
 
-        await sendToDiscord(
-          `[${vmIdentifier}] ${selectedKeyword} ignored`,
-          webhookUrl
-        );
+        if (selectedKeyword !== "exalted") {
+          await sendToDiscord(
+            `[${vmIdentifier}] ${selectedKeyword} ignored`,
+            webhookUrl
+          );
+        }
       }
     }
   }
