@@ -70,10 +70,6 @@ Example Path for Manual Configuration: `\\DESKTOP-YOURMACHINE\Users\YOUR_USER\Do
 
 This video teaches how to create a Discord webhook(_random and very short tutorial video I found on Youtube_): [How to Create a Discord Webhook](https://www.youtube.com/watch?v=xIZXDdVwNaE)
 
-### Note
-
-- Ensure that the number of entries in the `names` array matches the number of file paths in the `paths` array.
-
 ## Running the Project
 
 To start the project, run the following command:
