@@ -2,7 +2,14 @@ const fs = require("fs");
 const { createInterface } = require("readline");
 const processLine = require("./processLine");
 
-function monitorFile(logFilePath, fileIndex, fileSizes, lastCoord) {
+function monitorFile(
+  logFilePath,
+  fileIndex,
+  fileSizes,
+  lastCoord,
+  logIdentifiers,
+  webhookUrl
+) {
   fs.watchFile(logFilePath, { interval: 1000 }, (curr, prev) => {
     if (curr.size > prev.size) {
       const readStream = fs.createReadStream(logFilePath, {
@@ -16,7 +23,7 @@ function monitorFile(logFilePath, fileIndex, fileSizes, lastCoord) {
       });
 
       rl.on("line", (line) => {
-        processLine(line, fileIndex, lastCoord);
+        processLine(line, fileIndex, logIdentifiers, lastCoord, webhookUrl);
       });
 
       rl.on("close", () => {
