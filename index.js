@@ -96,7 +96,7 @@ Auto or manual? `
     });
   }
 
-  console.log("Starting data monitoring");
+  console.log("\nStarting data monitoring\n");
 }
 
 main().catch(console.error);
