@@ -28,6 +28,8 @@ If you prefer to download and run the code instead of the `.exe` file, follow th
 
 ## Configuration
 
+### Automatic Configurarion
+
 The project uses a configuration file in `.json` format, and it can have any name as long as it ends with `.json`.
 A default configuration file named `config.json` is provided in the project, which you can use or copy to another location if you prefer.
 
@@ -51,6 +53,18 @@ Example `config.json`:
 ```
 
 Exemple `config.json` path: `C:\Users\YOUR_USER\Documents\config.json`
+
+### Manual Configuration
+
+If you prefer not to use a `.json` file to store your configurations, you can configure the program manually each time you run it.
+Simply follow the prompts in the console and fill in the required information.
+
+### Difference in Path Formatting
+
+The only difference between manual configuration and automatic configuration is how you provide the paths to the log files.
+
+In manual configuration, you do not need to add an extra "\\" before each "\\" in the file path.
+Example Path for Manual Configuration: `\\DESKTOP-YOURMACHINE\Users\YOUR_USER\Documents\eb\Log\lastrun.log`
 
 ### How to Create a Discord Webhook
 
