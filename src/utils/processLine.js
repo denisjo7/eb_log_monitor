@@ -37,7 +37,7 @@ async function processLine(
         return;
       } else {
         coords.lastCoord = currCoord;
-        console.log(`[${vmIdentifier}] ${line}`);
+        console.log(`[${vmIdentifier}] ${line}\n`);
 
         await sendToDiscord(
           `[${vmIdentifier}] ${selectedKeyword} ignored`,
