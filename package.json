@@ -2,8 +2,10 @@
   "name": "eb_log_monitor",
   "version": "1.0.0",
   "main": "index.js",
+  "bin": "index.js",
   "scripts": {
-    "start": "node --no-warnings index.js"
+    "start": "node --no-warnings index.js",
+    "pkg": "pkg . --out-path ./dist --targets node18-win-x64 --no-bytecode"
   },
   "keywords": [],
   "author": "",
