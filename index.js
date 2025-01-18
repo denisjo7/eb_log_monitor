@@ -1,9 +1,6 @@
 const fs = require("fs");
-const { createInterface } = require("readline");
 const askQuestion = require("./src/utils/askQuestion");
-const processLine = require("./src/utils/processLine");
 const monitorFile = require("./src/utils/monitorFile");
-const sendToDiscord = require("./src/utils/sendToDiscord");
 
 const logFilePaths = [];
 const logIdentifiers = [];
@@ -46,31 +43,25 @@ async function main() {
   for (let index = 0; index < logFilePaths.length; index++) {
     const logFilePath = logFilePaths[index];
 
-    const readStream = fs.createReadStream(logFilePath, { encoding: "utf8" });
-    const rl = createInterface({
-      input: readStream,
-      crlfDelay: Infinity,
-    });
+    fs.stat(logFilePath, (err, stats) => {
+      if (err) {
+        console.error("Error retrieving file data:", err);
+        return;
+      }
+      fileSizes[index] = stats.size;
 
-    rl.on("line", (line) => {
-      processLine(line, index, logIdentifiers, lastCoord, webhookUrl);
-    });
-
-    rl.on("close", () => {
-      fs.stat(logFilePath, (err, stats) => {
-        if (err) {
-          console.error("Error retrieving file data:", err);
-          return;
-        }
-        fileSizes[index] = stats.size;
-
-        monitorFile(logFilePath, index, fileSizes, lastCoord);
-      });
+      monitorFile(
+        logFilePath,
+        index,
+        fileSizes,
+        lastCoord,
+        logIdentifiers,
+        webhookUrl
+      );
     });
   }
 
-  console.log("Initial reading completed\n");
-  await sendToDiscord("Initial reading completed", webhookUrl);
+  console.log("Starting data monitoring");
 }
 
 main().catch(console.error);
