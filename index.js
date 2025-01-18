@@ -1,6 +1,7 @@
 const fs = require("fs");
 const askQuestion = require("./src/utils/askQuestion");
 const monitorFile = require("./src/utils/monitorFile");
+const loadConfig = require("./src/utils/loadConfig");
 
 const logFilePaths = [];
 const logIdentifiers = [];
@@ -11,35 +12,52 @@ const coords = {
 };
 
 async function main() {
+  let autoOrManual = "";
   let finishedFilePaths = false;
 
   do {
-    webhookUrl = await askQuestion("Discord Webhook Url: ");
-    webhookUrl = webhookUrl.trim();
-  } while (webhookUrl === "");
+    autoOrManual = await askQuestion(
+      `1- Use config file
+2- Configure manually
+Auto or manual? `
+    );
+    autoOrManual = autoOrManual.trim();
+  } while (autoOrManual !== "1" && autoOrManual !== "2");
 
-  while (!finishedFilePaths) {
-    let filePath = "";
-    let fileName = "";
-    let addMore = "";
-
+  if (autoOrManual === "1") {
+    const config = await loadConfig();
+    webhookUrl = config.webhookUrl;
+    config.paths.forEach((path) => logFilePaths.push(path));
+    config.names.forEach((name) => logIdentifiers.push(name));
+  } else {
     do {
-      filePath = await askQuestion("Log file path: ");
-      filePath = filePath.trim();
-      logFilePaths.push(filePath);
-    } while (filePath === "");
+      webhookUrl = await askQuestion("Discord Webhook Url: ");
+      webhookUrl = webhookUrl.trim();
+    } while (webhookUrl === "");
 
-    do {
-      fileName = await askQuestion("Log file name: ");
-      fileName = fileName.trim();
-      logIdentifiers.push(fileName);
-    } while (fileName === "");
+    while (!finishedFilePaths) {
+      let filePath = "";
+      let fileName = "";
+      let addMore = "";
 
-    do {
-      addMore = await askQuestion("Add more logs? (y/n): ");
-      finishedFilePaths = addMore === "n";
-      console.log();
-    } while (addMore !== "y" && addMore !== "n");
+      do {
+        filePath = await askQuestion("Log file path: ");
+        filePath = filePath.trim();
+        logFilePaths.push(filePath);
+      } while (filePath === "");
+
+      do {
+        fileName = await askQuestion("Log file name: ");
+        fileName = fileName.trim();
+        logIdentifiers.push(fileName);
+      } while (fileName === "");
+
+      do {
+        addMore = await askQuestion("Add more logs? (y/n): ");
+        finishedFilePaths = addMore === "n";
+        console.log();
+      } while (addMore !== "y" && addMore !== "n");
+    }
   }
 
   for (let index = 0; index < logFilePaths.length; index++) {
