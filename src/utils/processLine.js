@@ -5,7 +5,7 @@ async function processLine(
   line,
   fileIndex,
   logIdentifiers,
-  lastCoord,
+  coords,
   webhookUrl
 ) {
   const filterPhrase = "pickitem timeout";
@@ -33,10 +33,10 @@ async function processLine(
       const vmIdentifier = logIdentifiers[fileIndex];
       const currCoord = extractCoordinates(line);
 
-      if (currCoord === lastCoord) {
+      if (currCoord === coords.lastCoord) {
         return;
       } else {
-        lastCoord = currCoord;
+        coords.lastCoord = currCoord;
         console.log(`[${vmIdentifier}] ${line}`);
 
         await sendToDiscord(

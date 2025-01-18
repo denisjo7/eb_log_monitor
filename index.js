@@ -6,7 +6,9 @@ const logFilePaths = [];
 const logIdentifiers = [];
 let webhookUrl = "";
 let fileSizes = logFilePaths.map(() => 0);
-let lastCoord = "";
+const coords = {
+  lastCoord: "",
+};
 
 async function main() {
   let finishedFilePaths = false;
@@ -54,7 +56,7 @@ async function main() {
         logFilePath,
         index,
         fileSizes,
-        lastCoord,
+        coords,
         logIdentifiers,
         webhookUrl
       );

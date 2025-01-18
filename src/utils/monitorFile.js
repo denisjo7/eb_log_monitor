@@ -6,7 +6,7 @@ function monitorFile(
   logFilePath,
   fileIndex,
   fileSizes,
-  lastCoord,
+  coords,
   logIdentifiers,
   webhookUrl
 ) {
@@ -23,7 +23,7 @@ function monitorFile(
       });
 
       rl.on("line", (line) => {
-        processLine(line, fileIndex, logIdentifiers, lastCoord, webhookUrl);
+        processLine(line, fileIndex, logIdentifiers, coords, webhookUrl);
       });
 
       rl.on("close", () => {
