@@ -4,11 +4,11 @@
 
 ## How to Use
 
-### Using the Latest Release
+#### Using the Latest Release
 
 Simply download the latest version from the releases page and run it. This way, you don't need to install Node.js or download the entire project.
 
-### Running the Code Instead of the Executable
+#### Running the Code Instead of the Executable
 
 If you prefer to download and run the code instead of the `.exe` file, follow the instructions below:
 
@@ -66,6 +66,14 @@ To start the project, run the following command:
 
 ```bash
 npm start
+```
+
+## Compiling to a .exe
+
+If you prefer to compile the project into a `.exe` file, you can run the following command:
+
+```bash
+npm run pkg
 ```
 
 This will start the monitoring process and check if any important currencies are missed in the logs.
