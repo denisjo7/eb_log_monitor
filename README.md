@@ -1,6 +1,8 @@
 # EB Log Monitor
 
-**EB Log Monitor** is a tool designed to monitor the log files of the EB program to check if the bot has missed any important currencies during its run. It helps ensure that no high-value currency is missed or left behind by the bot.
+**EB Log Monitor** is a tool designed to monitor the log files of the EB program to check if the bot has missed any important currencies during its run.
+When the script identifies in the log that any of these currencies were left behind, it will notify you on Discord: "Divine Orb", "Mirror of Kalandra" and "Perfect Jeweler's Orb". "Exalted Orb" is also monitored, but only shown in the console instead of sending a message to Discord.
+It helps ensure that no high-value currency is missed or left behind by the bot.
 
 ## How to Use
 
